@@ -20,9 +20,21 @@ void ShowArray(double [] mas)
             else Console.Write($"{mas[i]}");
         }
     Console.WriteLine("]");
-
 }
 
+double DiffMaxMin(double [] massive)
+{
+    double diff = 0;
+    double minval = massive[0];
+    double maxval = massive[0];
+    for (int i = 0; i < massive.GetLength(0); i++)
+        {
+            if (minval > massive[i]) minval = massive[i];
+            if (maxval < massive[i]) maxval = massive[i];
+        }
+    diff = Math.Round(maxval - minval,2);
+    return diff;
+}
 Console.Clear();
 Console.Write("Enter the dimension of the array: ");
 int dimens=Convert.ToInt32(Console.ReadLine());
@@ -37,13 +49,5 @@ double[] massive = CreateArray(dimens, minlim, maxlim);
 
 ShowArray(massive);
 
-double dif = 0;
-double minval = massive[0];
-double maxval = massive[0];
-    for (int i = 0; i < massive.GetLength(0); i++)
-        {
-            if (minval > massive[i]) minval = massive[i];
-            if (maxval < massive[i]) maxval = massive[i];
-        }
-dif = Math.Round(maxval - minval,2);
-Console.WriteLine($"The difference between the maximum {maxval} and minimum {minval} elements of the array: {dif}");
+double dif = DiffMaxMin(massive);
+Console.WriteLine($"The difference between the maximum and minimum elements of the array: {dif}");
